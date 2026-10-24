@@ -1,0 +1,40 @@
+Language Support for Java(TM) by Red Hat
+
+Ollama
+
+Auto Rename Tag
+
+Code Runner
+
+Continue - open-source AI code agent
+
+Debugger for Java
+
+Extension Pack for Java
+
+Gradle for Java
+
+Jupyter
+
+Jupyter Cell Tags
+
+Jupyter Keymap
+
+Jupyter Slide Show
+
+Jupyter Notebook Renderers
+
+Lombok Annotations Support for VS Code
+
+Material Icon Theme
+
+Maven for Java
+
+Project Manager for Java
+
+Rainbow CSV
+
+Test Runner for Java
+
+vscode-pdf
+
