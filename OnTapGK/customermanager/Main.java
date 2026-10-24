@@ -96,3 +96,20 @@ public class Main {
         scanner.close();
     }
 }
+/*
+ * Bài Lab tổng ôn thi giữa kỳ hiện thực cây nhị phân tìm kiếm:
+ * Customer(ID, Name, Gender, Age, Blood)
+ * Name: tên đầy đủ họ và tên.
+ * 1) Nhập 1 danh sách khách hàng vào cây BST lấy nhãn các node theo
+ * customer_ID.
+ * 2) Xuất danh sách khách hàng theo định dạng bảng.
+ * 3) Tính tuổi trung bình khách hàng, tìm khách hàng có tuổi lớn nhất, nhỏ nhất
+ * 4) Xuất danh sách khách hàng nam, danh sách khách hàng nữ, danh sách khách
+ * hàng theo nhóm máu (A, B, O).
+ * 5) Sắp xếp theo tên và xuất danh sách khách hàng nam
+ * 6) Tìm khách hàng nam lớn tuổi nhất, khách hàng nam tuổi nhỏ nhất
+ * 7) Tìm kiếm khách hàng theo ID
+ * 8) Xoá khách hàng theo ID.
+ * 9) Lưu danh sách khách hàng ra file và đọc file lấy danh sách mỗi khi chạy
+ * chương trình
+ */

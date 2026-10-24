@@ -108,15 +108,17 @@ class BST implements Serializable {
             System.out.println("Danh sách trống!");
             return;
         }
-        
+
         int sumAge = 0;
         Customer maxAgeC = list.get(0);
         Customer minAgeC = list.get(0);
 
         for (Customer c : list) {
             sumAge += c.age;
-            if (c.age > maxAgeC.age) maxAgeC = c;
-            if (c.age < minAgeC.age) minAgeC = c;
+            if (c.age > maxAgeC.age)
+                maxAgeC = c;
+            if (c.age < minAgeC.age)
+                minAgeC = c;
         }
 
         System.out.println("-> Tuổi trung bình: " + (double) sumAge / list.size());
@@ -128,7 +130,7 @@ class BST implements Serializable {
     public void printByCondition(String type, String value) {
         List<Customer> list = new ArrayList<>();
         getListRec(root, list);
-        
+
         printTableHeader();
         for (Customer c : list) {
             if (type.equals("gender") && c.gender.equalsIgnoreCase(value)) {
@@ -144,15 +146,16 @@ class BST implements Serializable {
     public void printMaleSortedByName() {
         List<Customer> males = new ArrayList<>();
         getListRec(root, males);
-        
+
         // Lọc lấy danh sách Nam
         males.removeIf(c -> !c.gender.equalsIgnoreCase("Nam"));
-        
+
         // Sắp xếp theo tên (phần tên cuối)
         males.sort((c1, c2) -> c1.getFirstName().compareToIgnoreCase(c2.getFirstName()));
 
         printTableHeader();
-        for (Customer c : males) System.out.println(c);
+        for (Customer c : males)
+            System.out.println(c);
         printTableFooter();
     }
 
@@ -160,12 +163,14 @@ class BST implements Serializable {
     public void printMaleAgeStats() {
         List<Customer> list = new ArrayList<>();
         getListRec(root, list);
-        
+
         Customer maxMale = null, minMale = null;
         for (Customer c : list) {
             if (c.gender.equalsIgnoreCase("Nam")) {
-                if (maxMale == null || c.age > maxMale.age) maxMale = c;
-                if (minMale == null || c.age < minMale.age) minMale = c;
+                if (maxMale == null || c.age > maxMale.age)
+                    maxMale = c;
+                if (minMale == null || c.age < minMale.age)
+                    minMale = c;
             }
         }
 
@@ -197,7 +202,8 @@ class BST implements Serializable {
     }
 
     private Node deleteRec(Node root, String id) {
-        if (root == null) return root;
+        if (root == null)
+            return root;
 
         if (id.compareToIgnoreCase(root.data.id) < 0)
             root.left = deleteRec(root.left, id);
@@ -205,8 +211,10 @@ class BST implements Serializable {
             root.right = deleteRec(root.right, id);
         else {
             // Node có 0 hoặc 1 con
-            if (root.left == null) return root.right;
-            else if (root.right == null) return root.left;
+            if (root.left == null)
+                return root.right;
+            else if (root.right == null)
+                return root.left;
 
             // Node có 2 con: Lấy node nhỏ nhất bên cây con phải
             root.data = minValue(root.right);
@@ -224,7 +232,8 @@ class BST implements Serializable {
         return minv;
     }
 
-    // Yêu cầu 9: Lưu file và đọc file (Sử dụng Object Serialization cho tiện lợi với Tree)
+    // Yêu cầu 9: Lưu file và đọc file (Sử dụng Object Serialization cho tiện lợi
+    // với Tree)
     public void saveToFile(String filename) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
             oos.writeObject(root);
@@ -236,8 +245,9 @@ class BST implements Serializable {
 
     public void loadFromFile(String filename) {
         File file = new File(filename);
-        if (!file.exists()) return; // Chạy lần đầu chưa có file thì bỏ qua
-        
+        if (!file.exists())
+            return; // Chạy lần đầu chưa có file thì bỏ qua
+
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             root = (Node) ois.readObject();
             System.out.println("-> Đã nạp dữ liệu khách hàng từ file!");
@@ -253,7 +263,7 @@ public class CustomerManagement {
         Scanner scanner = new Scanner(System.in);
         BST tree = new BST();
         String filename = "customers.dat";
-        
+
         // Đọc dữ liệu ngay khi chạy
         tree.loadFromFile(filename);
 
@@ -274,11 +284,16 @@ public class CustomerManagement {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Nhập ID: "); String id = scanner.nextLine();
-                    System.out.print("Nhập Họ Tên: "); String name = scanner.nextLine();
-                    System.out.print("Nhập Giới tính (Nam/Nữ): "); String gender = scanner.nextLine();
-                    System.out.print("Nhập Tuổi: "); int age = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Nhập Nhóm máu (A, B, AB, O): "); String blood = scanner.nextLine();
+                    System.out.print("Nhập ID: ");
+                    String id = scanner.nextLine();
+                    System.out.print("Nhập Họ Tên: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Nhập Giới tính (Nam/Nữ): ");
+                    String gender = scanner.nextLine();
+                    System.out.print("Nhập Tuổi: ");
+                    int age = Integer.parseInt(scanner.nextLine());
+                    System.out.print("Nhập Nhóm máu (A, B, AB, O): ");
+                    String blood = scanner.nextLine();
                     tree.insert(new Customer(id, name, gender, age, blood));
                     System.out.println("Thêm thành công!");
                     break;
@@ -332,3 +347,20 @@ public class CustomerManagement {
         scanner.close();
     }
 }
+/*
+ * Bài Lab tổng ôn thi giữa kỳ hiện thực cây nhị phân tìm kiếm:
+ * Customer(ID, Name, Gender, Age, Blood)
+ * Name: tên đầy đủ họ và tên.
+ * 1) Nhập 1 danh sách khách hàng vào cây BST lấy nhãn các node theo
+ * customer_ID.
+ * 2) Xuất danh sách khách hàng theo định dạng bảng.
+ * 3) Tính tuổi trung bình khách hàng, tìm khách hàng có tuổi lớn nhất, nhỏ nhất
+ * 4) Xuất danh sách khách hàng nam, danh sách khách hàng nữ, danh sách khách
+ * hàng theo nhóm máu (A, B, O).
+ * 5) Sắp xếp theo tên và xuất danh sách khách hàng nam
+ * 6) Tìm khách hàng nam lớn tuổi nhất, khách hàng nam tuổi nhỏ nhất
+ * 7) Tìm kiếm khách hàng theo ID
+ * 8) Xoá khách hàng theo ID.
+ * 9) Lưu danh sách khách hàng ra file và đọc file lấy danh sách mỗi khi chạy
+ * chương trình
+ */
